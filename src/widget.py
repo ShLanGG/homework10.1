@@ -21,7 +21,7 @@ def mask_account_card(information: str) -> str:
 
 
 def get_date(full_format_date: str) -> str:
-    ''' Создаем функцию get_date, которая преобразует формат даты из 'yyyy-mm-dd' в 'dd.mm.yyyy' '''
+    """Создаем функцию get_date, которая преобразует формат даты из 'yyyy-mm-dd' в 'dd.mm.yyyy'"""
     date = full_format_date[:10].split("-")
     dd_mm_yyyy_format_date = ".".join(date[-1::-1])
     return dd_mm_yyyy_format_date
