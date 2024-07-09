@@ -18,6 +18,7 @@ def mask_account_card(information: str) -> str:
                 user_bank_information.remove(i)
         user_bank_information.append(get_mask_card_number(user_card))
         return " ".join(user_bank_information)
+    return ''
 
 
 def get_date(full_format_date: str) -> str:
