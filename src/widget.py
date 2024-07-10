@@ -3,21 +3,15 @@ from src.masks import get_mask_account, get_mask_card_number
 
 def mask_account_card(information: str) -> str:
     """Создаем функцию mask_account_card, которая определяет какую информацию пользователь хочет замаскировать и используя
-    функции из masks.py маскирует нужные для пользователя данные"""
+    функции из masks.py, маскируя нужные для пользователя данные"""
+
     user_bank_information = information.split()
 
     if user_bank_information[0] == "Счет":
-        for account in user_bank_information:
-            if account.isdigit():
-                return user_bank_information[0] + " " + get_mask_account(account)
+        return user_bank_information[0] + " " + get_mask_account(user_bank_information[-1])
     else:
-        user_card = ""
-        for i in user_bank_information:
-            if i.isdigit():
-                user_card += i
-                user_bank_information.remove(i)
-        user_bank_information.append(get_mask_card_number(user_card))
-        return " ".join(user_bank_information)
+        user_card = get_mask_card_number(user_bank_information.pop())
+        return ' '.join(user_bank_information) + ' ' + user_card
 
 
 def get_date(full_format_date: str) -> str:
@@ -27,8 +21,12 @@ def get_date(full_format_date: str) -> str:
     return dd_mm_yyyy_format_date
 
 
-user_input_full_format_date = input("Введите сложный формат даты: ")
-print(f"Вот более приятный формат даты: {get_date(user_input_full_format_date)}")
-
-user_input_bank_information = input("\nВведите банковскую информацию, которую нужно замаскировать: ")
-print(f"Пожалуйста, замаскированные данные: {mask_account_card(user_input_bank_information)}")
+print(mask_account_card('Счет 73654108430135874305'))
+print(mask_account_card('Maestro 1596837868705199'))
+print(mask_account_card('Счет 64686473678894779589'))
+print(mask_account_card('MasterCard 7158300734726758'))
+print(mask_account_card('Счет 35383033474447895560'))
+print(mask_account_card('Visa Classic 6831982476737658'))
+print(mask_account_card('Visa Platinum 8990922113665229'))
+print(mask_account_card('Visa Gold 5999414228426353'))
+print(mask_account_card('Счет 73654108430135874305'))
