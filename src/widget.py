@@ -34,6 +34,6 @@ def get_data(full_format_date: str) -> str:
     try:
         date_obj = datetime.fromisoformat(full_format_date[:10])
     except:
-        raise ValueError('Введён неправильный формат даты')
+        raise ValueError("Введён неправильный формат даты")
     formatted_date = date_obj.strftime("%d.%m.%Y")
     return formatted_date

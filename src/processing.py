@@ -13,4 +13,4 @@ def sort_by_date(operations: list, reverse: bool = True) -> list:
     try:
         return sorted(operations, key=lambda x: datetime.strptime(x["date"], "%Y-%m-%dT%H:%M:%S.%f"), reverse=reverse)
     except:
-        raise ValueError('Есть неккоректная дата(-ы)')
+        raise ValueError("Есть неккоректная дата(-ы)")
