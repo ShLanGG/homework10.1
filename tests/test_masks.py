@@ -2,6 +2,7 @@ import pytest
 
 from src.masks import get_mask_account, get_mask_card_number
 
+
 def test_get_mask_card_number():
     assert get_mask_card_number('1234123412341234') == '1234 12** **** 1234'
     assert get_mask_card_number('1596 8378 6870 5199') == '1596 83** **** 5199'

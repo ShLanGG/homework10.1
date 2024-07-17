@@ -1,6 +1,4 @@
-from datetime import datetime
-
-
+from src.widget import get_data
 def filter_by_state(operations: list, state: str = "EXECUTED") -> list:
     """Создаем функцию filter_by_state, которая принимает на вход список словарей и параметр state(по умолчанию "EXECUTED").
     Функция возвращает новый список словарей, соответствующих параметру state"""
@@ -10,4 +8,4 @@ def filter_by_state(operations: list, state: str = "EXECUTED") -> list:
 def sort_by_date(operations: list, reverse: bool = True) -> list:
     """Создаем функцию sort_by_date, которая принимает на вход список словарей и параметр reverse(по умол. "True").
     Функция возвращает новый список словарей, сортированных по дате операций, согласно параметру reverse"""
-    return sorted(operations, key=lambda x: datetime.strptime(x["date"], "%Y-%m-%dT%H:%M:%S.%f"), reverse=reverse)
+    return sorted(operations, key=lambda x: get_data(x['date']), reverse=reverse)
