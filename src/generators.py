@@ -4,3 +4,7 @@ def filter_by_currency(transactions: list, currency: str) -> None:
             yield transaction
 
 
+def transaction_descriptions(transactions):
+    for description in transactions:
+        yield description.get("description")
+
