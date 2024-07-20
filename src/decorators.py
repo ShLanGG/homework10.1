@@ -1,49 +1,23 @@
-from time import time
-import sys
-from functools import wraps
+def log(filename=""):
+    """Decorator create log about function operation."""
 
-
-def log(filename=None):
-    log_file = filename if filename else sys.stdout
-
-    def decorator(func):
-        @wraps(func)
+    def my_decorator(func):
         def wrapper(*args, **kwargs):
             try:
-                start_time = time()
                 result = func(*args, **kwargs)
-                end_time = time()
-
-                if isinstance(log_file, str):
-                    with open(log_file, 'a') as f:
-                        f.write(f"{func.__name__} ok\n"
-                                f"Time for work: {end_time - start_time}\n")
+                if filename:
+                    with open(filename, "w") as file:
+                        file.write(f"{func.__name__} ok")
                 else:
-                    print(f"{func.__name__} ok\n"
-                          f"Time for work: {end_time - start_time}\n",
-                          file=log_file)
-
+                    print(f"{func.__name__} ok")
                 return result
-
             except Exception as e:
-                error_type = type(e).__name__
-                inputs = (args, kwargs)
-                if isinstance(log_file, str):
-                    with open(log_file, 'a') as f:
-                        f.write(f"{func.__name__} error: {error_type}. Inputs: {inputs}\n")
+                if filename:
+                    with open(filename, "w") as file:
+                        file.write(f"{func.__name__} error: {e.__class__.__name__}. Inputs: {args}, {kwargs}")
                 else:
-                    print(f"{func.__name__} error: {error_type}. Inputs: {inputs}", file=log_file)
-
-                raise
+                    print(f"{func.__name__} error: {e.__class__.__name__}. Inputs: {args}, {kwargs}")
 
         return wrapper
 
-    return decorator
-
-
-@log()
-def function_success(x, y):
-    return x + y
-
-
-function_success(1, 2)
+    return my_decorator
