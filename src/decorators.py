@@ -39,3 +39,11 @@ def log(filename=None):
         return wrapper
 
     return decorator
+
+
+@log()
+def function_success(x, y):
+    return x + y
+
+
+function_success(1, 2)
