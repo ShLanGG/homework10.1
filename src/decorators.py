@@ -1,7 +1,7 @@
-def log(filename=""):
+def log(filename: str = "") -> None:
     """Decorator create log about function operation."""
 
-    def my_decorator(func):
+    def my_decorator(func: any):
         def wrapper(*args, **kwargs):
             try:
                 result = func(*args, **kwargs)
