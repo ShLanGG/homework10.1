@@ -1,4 +1,4 @@
-def log(filename: str = "") -> None:
+def log(filename: str = "") -> any:
     """Decorator create log about function operation."""
 
     def my_decorator(func: any):
