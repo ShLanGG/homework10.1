@@ -28,9 +28,15 @@ def get_operations(file_path):
 
 
 def get_transaction_amount(transaction: dict) -> float:
-    if transaction["operationAmount"]["currency"]["code"] == "RUB":
-        return transaction["operationAmount"].get("amount")
-    else:
-        return get_exchange_amount(
-            transaction["operationAmount"]["currency"].get("code"), transaction["operationAmount"].get("amount")
-        )
+    try:
+        if transaction["operationAmount"]["currency"]["code"] == "RUB":
+            amount = transaction["operationAmount"].get("amount")
+            return float(amount) if amount is not None else 0.0
+        else:
+            amount = get_exchange_amount(
+                transaction["operationAmount"]["currency"].get("code"), transaction["operationAmount"].get("amount")
+            )
+            return float(amount) if amount is not None else 0.0
+    except (KeyError, TypeError, ValueError) as e:
+        print(f"Ошибка при обработке транзакции: {e}")
+        return 0.0
