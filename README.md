@@ -64,3 +64,27 @@ pytest
    pytest --cov
    ```   
 После этих манипуляций в терминале, в строке Total вам выведет процент покрятия кода тестами
+
+
+## Новая функциональность
+
+### Поддержка CSV и Excel файлов
+
+Теперь проект поддерживает чтение финансовых операций из CSV- и Excel-файлов. Для этого реализованы следующие функции:
+
+- **`read_csv_file(file_path: str) -> list[dict]`**  
+  Считывает данные из CSV-файла и возвращает список словарей с транзакциями.
+
+- **`read_excel_file(file_path: str) -> list[dict]`**  
+  Считывает данные из Excel-файла и возвращает список словарей с транзакциями.
+
+### Пример использования
+
+```python
+from file_reader import read_csv_file, read_excel_file
+
+# Чтение CSV-файла
+csv_transactions = read_csv_file("data/transactions.csv")
+
+# Чтение Excel-файла
+excel_transactions = read_excel_file("data/transactions_excel.xlsx")
